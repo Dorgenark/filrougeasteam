@@ -1,7 +1,7 @@
 Projet réalisé par:
-- Andrea.
-- Nael.
-- Simon.
+- Andrea
+- Nael
+- Simon
 
 # Fil rouge - phase de groupe
 - Durée : 5 jours
