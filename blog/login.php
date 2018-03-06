@@ -8,34 +8,41 @@ if(isset($_POST['submit'])){
   $dbPassword = "";
   $dbName = "filrougestream";
   // Requête de connexion a la base de donnée.
-  $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+  $conn = new PDO("mysql:host={$dbServername};dbname={$dbName}",$dbUsername,$dbPassword);
+  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   // Empéche le navigateur d'interpréter du code envoyer via le formulaire.
   $user = htmlspecialchars($_POST['username']);
   $password = htmlspecialchars($_POST['password']);
+  // hashage du mot de passe !
+  $hash_password= hash('sha256', $password);
 
-  if(empty($user) || empty($password)){
-    header("Location: admin.php?signup=Enter a valid username and password");
+  if(empty($user)){
+    header("Location: admin.php?error=Enter a username");
     exit();
-} else {
+} elseif(empty($hash_password)){
+  header("Location: admin.php?error=Enter a password");
+  exit();
+}
+else {
   /* Préparation de la requête qui séléctionne les entré qui ont une colonne login qui corréspond
      au username envoyer par le formulaire. */
-  $sql = "SELECT * FROM sessions WHERE login='$user'";
+  $sql = $conn->prepare("SELECT * FROM sessions WHERE login='$user'");
   // Execute la requête sql et la stock dans la variable $result.
-  $result = mysqli_query($conn, $sql);
+  $sql->execute();
   /* Vérifie le nombre de colonne revoyer par la variable result
      si c'est égal a 0 alors le login entré n'existe pas*/
-  $resultCheck = mysqli_num_rows($result);
+  $resultCheck = $sql->rowCount();
   if($resultCheck < 1){
-    header("Location: admin.php?signup=Enter a valid username and password");
+    header("Location: admin.php?error=User doesn't exist");
     exit();
   } else {
     // Vérifie si le mot de passe entré correspond au mot de passe associer au username dans la base de donnée !
-    if ($row = mysqli_fetch_assoc($result)) {
-      if ($row['password'] != $password) {
-        header("Location: admin.php?signup=Enter a valid username and password");
+    if ($row = $sql->fetch(PDO::FETCH_OBJ)) {
+      if (hash('sha256', $row->password) != $hash_password) {
+        header("Location: admin.php?error=Invalid password");
         exit();
-        } elseif ($row['password'] == $password) {
-          $_SESSION['login'] = $row['login'];
+      } elseif (hash('sha256', $row->password) == $hash_password) {
+          $_SESSION['login'] = $row->login;
           header("Location: index.php");
           exit();
         }

@@ -1,0 +1,55 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #FEFEFE;
+}
+
+.form-style {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 25em;
+  height: 400px;
+  margin: 10px auto;
+  border: 3px solid #EEEEEE;
+  border-radius: 15px;
+}
+
+h1 {
+  margin-bottom: 80px;
+  font-family: "PT Mono", sans-serif;
+}
+p {
+  width: 10em;
+  text-align: center;
+}
+
+.user-css, .pass-css, .btn-css {
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.user-css, .pass-css {
+  width: 100%
+}
+
+.input-css {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid black;
+  outline : none;
+}
+
+.submit-css {
+  background-color: #555555;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  cursor: pointer;
+}
+.submit-css:hover{
+  border: solid 1px #FEFEFE;
+  background-color: white;
+  color: #555555;
+
+}
