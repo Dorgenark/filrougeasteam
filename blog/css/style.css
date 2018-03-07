@@ -1,7 +1,7 @@
 /*
 //////////////////////////////////////////////////////
 
-FREE HTML5 TEMPLATE 
+FREE HTML5 TEMPLATE
 DESIGNED & DEVELOPED by FREEHTML5.CO
 
 //////////////////////////////////////////////////////
@@ -1285,3 +1285,12 @@ a > img.fh5co-align-center {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.logo {
+  width: auto;
+  max-height: 60px;
+}
+
+.right {
+  float: right;
+}
