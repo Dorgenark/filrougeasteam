@@ -31,11 +31,11 @@
 						foreach ($row as $key => $value){
 						?>
 						<div class="col-md-6 col-sm-6 col-xs-6 fh5co-work-wrap">
-							<a href="articles.php?titre=<?=$row[$key]->Titre?>&contenu=<?=$row[$key]->Contenu?>" class="fh5co-work-item js-fh5co-work-item">
+							<a href="articles.php?titre=<?=$row[$key]->titre?>&contenu=<?=$row[$key]->article?>" class="fh5co-work-item js-fh5co-work-item">
 								<img src="images/work_1.jpg" alt="Image" class="img-responsive">
 								<div class="fh5co-overlay-bg js-fh5co-overlay-bg"></div>
 								<div class="fh5co-overlay-text js-fh5co-overlay-text">
-									<h2><?=$row[$key]->Titre?></h2>
+									<h2><?=$row[$key]->titre?></h2>
 								</div>
 							</a>
 						</div>

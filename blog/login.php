@@ -43,7 +43,7 @@ else {
         exit();
       } elseif (hash('sha256', $row->password) == $hash_password) {
           $_SESSION['login'] = $row->login;
-          header("Location: index.php");
+          header("Location: dashboard/index.php");
           exit();
         }
       }
