@@ -3,6 +3,9 @@ Projet réalisé par:
 - Nael.
 - Simon.
 
+PS: l'accès au dashboard se trouve en bas du blog (user/password: admin)
+
+
 # Fil rouge - phase de groupe
 - Durée : 5 jours
 - Travail de groupe : par 3
