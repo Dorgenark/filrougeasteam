@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 07 mars 2018 à 12:34
--- Version du serveur :  5.7.19
--- Version de PHP :  5.6.31
+-- Hôte : localhost
+-- Généré le :  lun. 12 mars 2018 à 10:01
+-- Version du serveur :  10.1.30-MariaDB
+-- Version de PHP :  7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,22 +28,36 @@ SET time_zone = "+00:00";
 -- Structure de la table `articles`
 --
 
-DROP TABLE IF EXISTS `articles`;
-CREATE TABLE IF NOT EXISTS `articles` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Titre` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `Contenu` text CHARACTER SET latin1 NOT NULL,
-  `Auteur` varchar(50) CHARACTER SET latin1 NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+CREATE TABLE `articles` (
+  `id` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `auteur` varchar(100) NOT NULL,
+  `article` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `articles`
 --
 
-INSERT INTO `articles` (`ID`, `Titre`, `Contenu`, `Auteur`) VALUES
-(1, 'Qu\'est-ce que le Lorem Ipsum?', 'Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l\'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n\'a pas fait que survivre cinq siècles, mais s\'est aussi adapté à la bureautique informatique, sans que son contenu n\'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.', 'Jean Lorem'),
-(2, 'Pourquoi ?', 'Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum ', 'Chaozu');
+INSERT INTO `articles` (`id`, `titre`, `auteur`, `article`) VALUES
+(1, 'Article 1', 'Andrea', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(2, 'Article 2', 'Nael', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(3, 'Article 3', 'Simon', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(4, 'Article 4', 'Nael', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(5, 'Article 5', 'Andrea', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(6, 'Article 6', 'Simon', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.'),
+(7, 'Article 7', 'Inconnu', 'Lorem ipsum dolor sit amet consectetur adipiscing elit praesent tempus purus porttitor, porta nibh donec nascetur parturient sapien hac augue sociis habitasse, tempor dictum risus arcu consequat nostra himenaeos per vivamus venenatis. Sociis rutrum inceptos habitasse sed pretium curae conubia sagittis, platea litora nisl mollis dictumst ante a phasellus, quam porta tristique tortor auctor neque sodales. Etiam ante phasellus vulputate proin primis litora, massa nisi risus cubilia est sodales congue, sociosqu bibendum rutrum ultrices viverra.');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `categorie` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -51,13 +65,11 @@ INSERT INTO `articles` (`ID`, `Titre`, `Contenu`, `Auteur`) VALUES
 -- Structure de la table `sessions`
 --
 
-DROP TABLE IF EXISTS `sessions`;
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `sessions` (
+  `id` int(11) NOT NULL,
   `login` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `password` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `sessions`
@@ -65,6 +77,44 @@ CREATE TABLE IF NOT EXISTS `sessions` (
 
 INSERT INTO `sessions` (`id`, `login`, `password`) VALUES
 (1, 'admin', 'admin');
+
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `articles`
+--
+ALTER TABLE `articles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `articles`
+--
+ALTER TABLE `articles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `sessions`
+--
+ALTER TABLE `sessions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
