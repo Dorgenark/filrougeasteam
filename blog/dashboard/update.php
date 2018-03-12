@@ -14,11 +14,13 @@
         // keep track validation errors
         $titreError = null;
         $auteurError = null;
+        $categorieError = null;
         $articleError = null;
 
         // keep track post values
         $titre = $_POST['titre'];
         $auteur = $_POST['auteur'];
+        $categorie = $_POST['categorie'];
         $article = $_POST['article'];
 
         // validate input
@@ -33,6 +35,11 @@
             $valid = false;
         }
 
+        if (empty($categorie)) {
+            $categorieError = 'Catégorie manquante';
+            $valid = false;
+        }
+
         if (empty($article)) {
             $articleError = 'Article manquant';
             $valid = false;
@@ -42,9 +49,9 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE articles set titre = ?, auteur = ?, article =? WHERE id = ?";
+            $sql = "UPDATE articles set titre = ?, auteur = ?, categorie= ?, article =? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($titre,$auteur,$article,$id));
+            $q->execute(array($titre,$auteur,$categorie,$article,$id));
             Database::disconnect();
             header("Location: index.php");
         }
@@ -57,6 +64,7 @@
         $data = $q->fetch(PDO::FETCH_ASSOC);
         $titre = $data['titre'];
         $auteur = $data['auteur'];
+        $categorie = $data['categorie'];
         $article = $data['article'];
         Database::disconnect();
     }
@@ -94,6 +102,15 @@
                             <input name="auteur" type="text" placeholder="Auteur" value="<?php echo !empty($auteur)?$auteur:'';?>">
                             <?php if (!empty($auteurError)): ?>
                                 <span class="help-inline"><?php echo $auteurError;?></span>
+                            <?php endif;?>
+                        </div>
+                      </div>
+                      <div class="control-group <?php echo !empty($categorieError)?'error':'';?>">
+                        <label class="control-label">Catégorie</label>
+                        <div class="controls">
+                            <input name="categorie" type="text" placeholder="Catégorie" value="<?php echo !empty($categorie)?$categorie:'';?>">
+                            <?php if (!empty($categorieError)): ?>
+                                <span class="help-inline"><?php echo $categorieError;?></span>
                             <?php endif;?>
                         </div>
                       </div>

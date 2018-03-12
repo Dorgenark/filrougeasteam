@@ -20,6 +20,7 @@
                     <tr>
                       <th>Titre</th>
                       <th>Auteur</th>
+                      <th>Catégorie</th>
                       <th>Article</th>
                       <th>Action</th>
                     </tr>
@@ -33,6 +34,7 @@
                             echo '<tr>';
                             echo '<td>'. $row['titre'] . '</td>';
                             echo '<td>'. $row['auteur'] . '</td>';
+                            echo '<td>'. $row['categorie'] . '</td>';
                             echo '<td>'. $row['article'] . '</td>';
                             echo '<td width=250>';
                             echo '<a class="btn" href="read.php?id='.$row['id'].'">Read</a>';
