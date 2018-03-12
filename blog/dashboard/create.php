@@ -49,6 +49,7 @@
     <meta charset="utf-8">
     <link   href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -81,10 +82,13 @@
                       <div class="control-group <?php echo !empty($articleError)?'error':'';?>">
                         <label class="control-label">Article</label>
                         <div class="controls">
-                            <input name="article" type="text"  placeholder="Article" value="<?php echo !empty($article)?$article:'';?>">
+                            <textarea name="article" type="text"  placeholder="Article" value="<?php echo !empty($article)?$article:'';?>">
                             <?php if (!empty($articleError)): ?>
                                 <span class="help-inline"><?php echo $articleError;?></span>
-                            <?php endif;?>
+                            <?php endif;?></textarea>
+                            <script>
+                                CKEDITOR.replace('article');
+                            </script>
                         </div>
                       </div>
                       <div class="form-actions">
@@ -95,5 +99,7 @@
                 </div>
 
     </div> <!-- /container -->
+
+
   </body>
 </html>
