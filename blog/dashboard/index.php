@@ -21,29 +21,41 @@
                       <th>Titre</th>
                       <th>Auteur</th>
                       <th>Article</th>
+                      <th>Categories</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
                   <?php
-                   include 'database.php';
-                   $pdo = Database::connect();
-                   $sql = 'SELECT * FROM articles ORDER BY id DESC';
-                   foreach ($pdo->query($sql) as $row) {
+                   require '../get_Articles.php';
+
+                   $req = $conn->prepare("
+                       SELECT a.id, a.titre, a.article, GROUP_CONCAT(c.categorie) AS categorie, a.auteur
+                       FROM articles AS a
+                       INNER JOIN articles_categories AS ac
+                           ON a.id = ac.articles_id
+                       INNER JOIN categories AS c
+                           ON ac.categories_id = c.id
+                       GROUP BY a.id
+                    ");
+                    $req->execute();
+                    $article = $req->fetchAll(PDO::FETCH_OBJ);
+                   foreach ($article as $row) {
                             echo '<tr>';
-                            echo '<td>'. $row['titre'] . '</td>';
-                            echo '<td>'. $row['auteur'] . '</td>';
-                            echo '<td>'. $row['article'] . '</td>';
+                            echo '<td>'. $row->titre . '</td>';
+                            echo '<td>'. $row->auteur . '</td>';
+                            echo '<td>'. $row->article . '</td>';
+                            echo '<td>'. $row->categorie .'</td>';
                             echo '<td width=250>';
-                            echo '<a class="btn" href="read.php?id='.$row['id'].'">Read</a>';
+                            echo '<a class="btn" href="read.php?id='.$row->id.'">Read</a>';
                             echo ' ';
-                            echo '<a class="btn btn-success" href="update.php?id='.$row['id'].'">Update</a>';
+                            echo '<a class="btn btn-success" href="update.php?id='.$row->id.'">Update</a>';
                             echo ' ';
-                            echo '<a class="btn btn-danger" href="delete.php?id='.$row['id'].'">Delete</a>';
+                            echo '<a class="btn btn-danger" href="delete.php?id='.$row->id.'">Delete</a>';
                             echo '</td>';
                             echo '</tr>';
                    }
-                   Database::disconnect();
+
                   ?>
                   </tbody>
             </table>

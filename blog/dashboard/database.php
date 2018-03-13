@@ -1,4 +1,11 @@
 <?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+if (empty($_SESSION['login'])){
+  header('Location: ../admin.php');
+}
 class Database
   {
       private static $dbName = 'filrougestream' ;

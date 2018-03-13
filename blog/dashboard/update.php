@@ -1,4 +1,11 @@
 <?php
+if(!isset($_SESSION))
+{
+    session_start();
+}
+if (empty($_SESSION['login'])){
+  header('Location: ../admin.php');
+}
     require 'database.php';
 
     $id = null;
@@ -20,7 +27,6 @@
         // keep track post values
         $titre = $_POST['titre'];
         $auteur = $_POST['auteur'];
-        $categorie = $_POST['categorie'];
         $article = $_POST['article'];
 
         // validate input
@@ -35,11 +41,6 @@
             $valid = false;
         }
 
-        if (empty($categorie)) {
-            $categorieError = 'Catégorie manquante';
-            $valid = false;
-        }
-
         if (empty($article)) {
             $articleError = 'Article manquant';
             $valid = false;
@@ -49,9 +50,9 @@
         if ($valid) {
             $pdo = Database::connect();
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE articles set titre = ?, auteur = ?, categorie= ?, article =? WHERE id = ?";
+            $sql = "UPDATE articles set titre = ?, auteur = ?, article =? WHERE id = ?";
             $q = $pdo->prepare($sql);
-            $q->execute(array($titre,$auteur,$categorie,$article,$id));
+            $q->execute(array($titre,$auteur,$article,$id));
             Database::disconnect();
             header("Location: index.php");
         }
@@ -64,7 +65,6 @@
         $data = $q->fetch(PDO::FETCH_ASSOC);
         $titre = $data['titre'];
         $auteur = $data['auteur'];
-        $categorie = $data['categorie'];
         $article = $data['article'];
         Database::disconnect();
     }
@@ -76,6 +76,7 @@
     <meta charset="utf-8">
     <link   href="css/bootstrap.min.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -105,23 +106,17 @@
                             <?php endif;?>
                         </div>
                       </div>
-                      <div class="control-group <?php echo !empty($categorieError)?'error':'';?>">
-                        <label class="control-label">Catégorie</label>
-                        <div class="controls">
-                            <input name="categorie" type="text" placeholder="Catégorie" value="<?php echo !empty($categorie)?$categorie:'';?>">
-                            <?php if (!empty($categorieError)): ?>
-                                <span class="help-inline"><?php echo $categorieError;?></span>
-                            <?php endif;?>
-                        </div>
-                      </div>
                       <div class="control-group <?php echo !empty($articleError)?'error':'';?>">
-                        <label class="control-label">Article</label>
-                        <div class="controls">
-                            <input name="article" type="text"  placeholder="Article" value="<?php echo !empty($article)?$article:'';?>">
-                            <?php if (!empty($articleError)): ?>
-                                <span class="help-inline"><?php echo $articleError;?></span>
-                            <?php endif;?>
-                        </div>
+                          <label class="control-label">Article</label>
+                          <div class="controls">
+                              <textarea name="article" type="text"  placeholder="Article" value="<?php echo !empty($article)?$article:'';?>" >
+                              <?php if (!empty($articleError)): ?>
+                                  <span class="help-inline"><?php echo $articleError;?></span>
+                              <?php endif;?></textarea>
+                              <script>
+                                  CKEDITOR.replace('article');
+                              </script>
+                          </div>
                       </div>
                       <div class="form-actions">
                           <button type="submit" class="btn btn-success">Update</button>

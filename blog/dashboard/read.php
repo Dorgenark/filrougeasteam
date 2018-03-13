@@ -52,14 +52,6 @@
                         </div>
                       </div>
                       <div class="control-group">
-                        <label class="control-label">Catégorie</label>
-                        <div class="controls">
-                            <label class="checkbox">
-                                <?php echo $data['categorie'];?>
-                            </label>
-                        </div>
-                      </div>
-                      <div class="control-group">
                         <label class="control-label">Article</label>
                         <div class="controls">
                             <label class="checkbox">
