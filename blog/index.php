@@ -42,9 +42,6 @@
 					<?php $i++; } ?>
 					</div>
 						</div>
-						<div class="col-md-12 text-center">
-						<a href="#" class="fh5co-view js-fh5co-view"><span class="fh5co-icon-view"><i class="ti-plus"></i></span> <span class="js-fh5co-view-text">View All</span></a>
-						</div>
 					</div>
 					<!-- End More Works -->
 
