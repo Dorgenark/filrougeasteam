@@ -8,10 +8,10 @@ if (empty($_SESSION['login'])){
 }
 class Database
   {
-      private static $dbName = 'filrougestream' ;
-      private static $dbHost = 'localhost' ;
-      private static $dbUsername = 'root';
-      private static $dbUserPassword = '';
+    private static  $dbHost = "localhost";
+    private static  $dbUsername = "id5055971_root";
+    private static  $dbUserPassword = "admin";
+    private static  $dbName = "id5055971_filrougestream";
 
       private static $cont  = null;
 

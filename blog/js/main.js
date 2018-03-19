@@ -1,20 +1,20 @@
 ;(function () {
-	
+
 	'use strict';
 
-	// iPad and iPod detection	
+	// iPad and iPod detection
 	var isiPad = function(){
 	  return (navigator.platform.indexOf("iPad") != -1);
 	};
 
 	var isiPhone = function(){
 	    return (
-	      (navigator.platform.indexOf("iPhone") != -1) || 
+	      (navigator.platform.indexOf("iPhone") != -1) ||
 	      (navigator.platform.indexOf("iPod") != -1)
 	    );
 	};
 
-	
+
 	// Fast Click for ( Mobiles/Tablets )
 	var mobileFastClick = function() {
 		if ( isiPad() && isiPhone()) {
@@ -23,43 +23,43 @@
 	};
 
 	var menuAnimate = function(o, margin, duration, mul) {
-		var navLi = $('#fh5co-nav > ul > li'), 
+		var navLi = $('#fh5co-nav > ul > li'),
 			ktemp = 0;
 		navLi.each( function(k){
 			var el = $(this);
 			setTimeout(function() {
 				el.velocity(
-					{ opacity: o, marginRight: margin }, 
+					{ opacity: o, marginRight: margin },
 					{ duration: duration }
 				);
 			},  k * mul );
 			ktemp = k;
 		});
-		
+
 		console.log(ktemp);
 		setTimeout(function(){
 			$('.js-fh5co-nav-call-to-action').velocity(
-				{ opacity: o, marginRight: margin }, 
+				{ opacity: o, marginRight: margin },
 				{ duration: duration }
 			);
 		}, ktemp+1 * mul );
-		
-		
+
+
 	};
 
 	var burgerMenu = function() {
 		$('body').on('click', '.js-fh5co-nav-toggle', function(){
 			$('#fh5co-nav > ul > li, .js-fh5co-nav-call-to-action').css({ marginRight: -50, opacity: 0 });
 			$(this).toggleClass('active');
-			
+
 			var mainNav = $('#fh5co-main-nav');
 			mainNav.slideToggle(400).toggleClass('active');
-			
+
 
 			if ( mainNav.hasClass('active') ) {
-				menuAnimate(1, 0, 400, 200);	
+				menuAnimate(1, 0, 400, 200);
 			} else {
-				menuAnimate(0, -50, 1, 0);	
+				menuAnimate(0, -50, 1, 0);
 			}
 
 		});
@@ -93,7 +93,7 @@
 
 	var viewWorks = function() {
 		$('.js-fh5co-view').click(function(evt){
-			
+
 			var $this = $(this);
 			$this.toggleClass('active');
 			setTimeout(function(){
@@ -110,7 +110,7 @@
 		})
 	};
 
-	
+
 
 
 
@@ -118,25 +118,25 @@
 	var responsiveTabs = function(){
 		$('#fh5co-tab-feature').easyResponsiveTabs({
 	      type: 'default',
-	      width: 'auto', 
-	      fit: true, 
+	      width: 'auto',
+	      fit: true,
 	      inactive_bg: '',
 	      active_border_color: '',
 	      active_content_border_color: '',
 	      closed: 'accordion',
 	      tabidentify: 'hor_1'
-	            
+
 	    });
 	    $('#fh5co-tab-feature-center').easyResponsiveTabs({
 	      type: 'default',
 	      width: 'auto',
-	      fit: true, 
+	      fit: true,
 	      inactive_bg: '',
 	      active_border_color: '',
 	      active_content_border_color: '',
-	      closed: 'accordion', 
-	      tabidentify: 'hor_1' 
-	      
+	      closed: 'accordion',
+	      tabidentify: 'hor_1'
+
 	    });
 	    $('#fh5co-tab-feature-vertical').easyResponsiveTabs({
 	      type: 'vertical',
@@ -222,7 +222,7 @@
 		});
 
 	};
-	
+
 
 	$(function(){
 		burgerMenu();
@@ -238,3 +238,15 @@
 
 
 }());
+
+/*Service Worker*/
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+  .then(function(registration) {
+    console.log('Registered:', registration);
+  })
+  .catch(function(error) {
+    console.log('Registration failed: ', error);
+  });
+}

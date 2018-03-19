@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 12 mars 2018 à 21:29
+-- Généré le :  mar. 13 mars 2018 à 15:48
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -35,15 +35,19 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `auteur` varchar(100) NOT NULL,
   `article` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `articles`
 --
 
 INSERT INTO `articles` (`id`, `titre`, `auteur`, `article`) VALUES
-(2, 'rzazae', 'erazeraz', '<p>erazrazera</p>\r\n'),
-(3, 'rzaea', 'erzaerzaeraz', '<p>erzarezaeraz</p>\r\n');
+(5, 'Article 1', 'Auteur 1', '<p>&nbsp;</p>\r\n\r\n<p>Ceci est un article. mis &agrave; jour</p>\r\n'),
+(6, 'Article 2', 'Auteur 1', '<p>Ceci est un article.</p>\r\n'),
+(7, 'Article 3', 'Auteur 2', '<p>Ceci est un article.</p>\r\n'),
+(8, 'Article 4', 'Auteur 3', '<p>Ceci est un article.</p>\r\n'),
+(9, 'Article 5', 'Auteur 1', '<p>Ceci est un article.</p>\r\n'),
+(10, 'Article 6', 'Auteur 2', '<p>Ceci est un article.</p>\r\n');
 
 -- --------------------------------------------------------
 
@@ -58,6 +62,22 @@ CREATE TABLE IF NOT EXISTS `articles_categories` (
   KEY `articles_id` (`articles_id`),
   KEY `categories_id` (`categories_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `articles_categories`
+--
+
+INSERT INTO `articles_categories` (`articles_id`, `categories_id`) VALUES
+(5, 2),
+(5, 3),
+(6, 3),
+(6, 4),
+(7, 2),
+(7, 3),
+(8, 2),
+(8, 4),
+(9, 2),
+(10, 4);
 
 -- --------------------------------------------------------
 
