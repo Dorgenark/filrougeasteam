@@ -42,7 +42,16 @@ Designed by: <a href="http://freehtml5.co/">freehtml5.co</a> Images: <a href="ht
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
 <script src="js/google_map.js"></script>
 <!-- Main JS -->
-<script src="js/main.js"></script>
+<script type="text/javascript">
+  // Check that service workers are registered
+  if ('serviceWorker' in navigator) {
+    // Use the window load event to keep the page load performant
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js');
+    });
+  }
+</script>
+
 
 </body>
 </html>

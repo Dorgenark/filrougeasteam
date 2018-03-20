@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_POST['submit'])){
-  Informations de la base de donnée.
+
   $dbServername = "localhost";
   $dbUsername = "id5055971_root";
   $dbPassword = "admin";
